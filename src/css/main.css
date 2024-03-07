@@ -1,0 +1,1368 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Chakra Petch", sans-serif;
+    /* font-style: oblique 20deg; */
+}
+
+#content {
+    background-color: transparent;
+    background-image: 
+    linear-gradient(0deg, transparent 10%,
+    
+        /* the first line bold then only thin*/
+        #091633 10%, #091633 12%, transparent 13%, transparent 29%, 
+        #0E162D 30%, #0E162D 31%, transparent 32%, transparent 49%, 
+        #0E162D 50%, #0E162D 51%, transparent 52%, transparent 69%, 
+        #0E162D 70%, #0E162D 71%, transparent 72%, transparent 89%,
+        #0E162D 90%, #0E162D 91%, transparent 92%, transparent
+        ),
+
+    linear-gradient(90deg, transparent 9%, 
+        #091633 10%, #091633 12%, transparent 13%, transparent 29%, 
+        #0E162D 30%, #0E162D 31%, transparent 32%, transparent 49%, 
+        #0E162D 50%, #0E162D 51%, transparent 52%, transparent 69%, 
+        #0E162D 70%, #0E162D 71%, transparent 72%, transparent 89%,
+        #0E162D 90%, #0E162D 91%, transparent 92%, transparent
+        );
+    height: 100%;
+    background-size: 70px 70px;
+}
+
+.clicked {
+    background-color: #16324C;
+}
+
+body {
+    /* margin: 1%; */
+    padding: 0;
+    justify-content: center;
+    overflow: auto;
+    color: white;
+    background-color: #434343;
+    background-image:linear-gradient(#090E21, #090E21);
+    /* margin-bottom: 10px; */
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.box-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.font-green-color {
+    color: #06F7A1;
+}
+
+/*****************************************/
+/**************Header Section*************/
+/*****************************************/
+
+.header-flex {
+    /* padding: 8px; */
+    /* border: solid 1px blue; */
+    margin-top: 10px;
+    /* padding: 5px 20px; */
+    /* display: flex; */
+    /* justify-content: space-between;
+    align-items: center; */
+    background-color: #090E21;
+    color: white;
+    /* border-bottom: 1px solid #374151; */
+    position: relative;
+    height: 60px;
+    padding-top: 5px;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: row;
+    /* border-bottom: 5px solid #374151; */
+    position: absolute;
+    /* margin: 20px; */
+    /* margin-top: 3px; */
+    margin-left: 20px;
+    left: 0;
+    justify-content: left;
+    width: 20%;
+    height: 30px;
+}
+
+.date-n-time {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    width: 100%;
+    height: 0;
+}
+
+.line-left {
+    /* border-bottom: 5px solid red; */
+    border-bottom: 1px solid #4D5A70;
+    width: 26.9%;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+}
+
+.line-left-white-border {
+    width: 50px;
+    height: 110%;
+    bottom: 0;
+    border-bottom: 3px solid white;
+}
+
+.line-up-down {
+    /* border-bottom: 5px solid white; */
+    border-bottom: 1px solid #4D5A70;
+    transform: rotate(35deg);
+    position: absolute;
+    width: 1%;
+    bottom: 5px;
+    left: calc(27% - 5px); /* Adjust as needed */
+}
+
+.line-center {
+    /* border-bottom: 5px solid blue; */
+    border-bottom: 1px solid #4D5A70;
+    width: 44.8%;
+    position: absolute;
+    bottom: 0;
+    left: 27.6%;
+}
+
+.line-down-up {
+    /* border-bottom: 5px solid white; */
+    border-bottom: 1px solid #4D5A70;
+    transform: rotate(325deg);
+    position: absolute;
+    width: 1%;
+    bottom: 5px;
+    left: calc(72.5% - 5px); /* Adjust as needed */
+}
+
+.line-right {
+    /* border-bottom: 5px solid yellow; */
+    border-bottom: 1px solid #4D5A70;
+    width: 26.9%;
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+}
+
+.line-right::after {
+    content: ''; /* Empty content for pseudo-element */
+    position: absolute; /* Position absolutely */
+    bottom: 0; /* Adjust as needed */
+    right: 0;
+    width: 15px; /* Span the entire width */
+    height: 5px; /* Adjust the thickness of the line */
+    border-bottom: 3px solid #38BDF8; /* Color of the line */
+}
+
+.currentDate {
+    font-size: 28px;
+    font-weight: 600;
+    /* letter-spacing: 2px; */
+    /* position: absolute;
+    margin-top: -20px; */
+}
+
+.currentTime {
+    font-size: 20px;
+    font-weight: 500;
+    position: absolute;
+    top: 21px;
+    /* bottom: -18px; */
+    left: 190px;
+    transform: translateY(-50%);
+}
+
+.header-center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    /* margin-left: 80px;  */
+    /* border-bottom: 1px solid #374151; */
+    left: 28%;
+    right: 28%;
+    top: 5px;
+    position: absolute;
+    justify-content: center;
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+.icon {
+    width: 42px;
+    height: 42px;
+    margin-right: 20px;
+    /* margin-top: 5px; */
+    
+}
+
+.icon img {
+    width: 100%;
+    height: 100%;
+}
+
+.header-text {
+    text-align: center;
+}
+
+.header-text h1 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    font-size: 33px;
+    /* padding-bottom: 5px; */
+    font-weight: bold;
+    transform: skew(-5deg, 0deg);
+}
+
+.header-right {
+    margin-top: 5px;
+    margin-right: 20px;
+    position: absolute;
+    right: 0;
+    /* width: 20%; */
+}
+
+.control-icon {
+    margin-right: 10px; /* Adjust margin as needed */
+    height: 20px;
+    width: 20px;
+    transform: rotate(90deg);
+}
+
+.control-icon img {
+    height: 100%;
+    filter: brightness(0) invert(1);
+}
+
+.parallelogram-left-dark {
+    width: 72px;
+    height: 7px;
+    transform: skew(55deg);
+    background: #38BDF8;
+    position: absolute;
+    bottom: 1.9px;
+    left: 6.5%;
+}
+
+.parallelogram-left-light {
+	width: 320px;
+    height: 7px;
+    transform: skew(55deg);
+    background: #31FBFB;
+    position: absolute;
+    bottom: 1.9px;
+    left: 10.4%;
+}
+
+.parallelogram-right-light {
+	width: 320px;
+    height: 7px;
+    transform: skew(-55deg);
+    background: #31FBFB;
+    position: absolute;
+    bottom: 1.9px;
+    right: 10.4%;
+}
+
+.parallelogram-right-dark {
+    width: 72px;
+    height: 7px;
+    transform: skew(-55deg);
+    background: #38BDF8;
+    position: absolute;
+    bottom: 1.9px;
+    right: 6.5%;
+}
+
+/*****************************************/
+/************Left-side content************/
+/*****************************************/
+
+#box2 {
+    /* flex-grow: 1; */
+    display: flex;
+    /* flex-direction: row; */
+    /* margin-top: 30px; */
+    /* border: solid 1px green; */
+    padding: 20px 20px 0; /* 20px top, 20px right/left, 0 bottom */
+    height: 93%;
+}
+
+#box3 {
+    /* flex: 4; */
+    display: flex;
+    width: 36%;
+    /* flex-direction: row; */
+    /* border: solid 1px red; */
+}
+
+#box4,
+#box5 {
+    width: 50%;
+    height: 100%;
+    /* flex-grow: 1; */
+    /* margin: 0 8px; */
+    /* border: solid 1px orange; */
+}
+
+#box5 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    width: 50%;
+}
+
+.content-right-up {
+    /* flex-grow: 1; */
+    margin: 0 8px;
+    /* border: solid 1px pink; */
+    text-align: left;
+}
+
+.content-right-down {
+    /* flex-grow: 1; */
+    margin: 0 8px;
+    /* border: solid 1px pink; */
+    text-align: left;
+    /* margin-top: 10px; */
+}
+
+.trader-dashboard {
+    text-align: left;
+}
+
+.dashboard-title {
+    display: flex;
+    flex-direction: row;
+    height: 30px;
+    margin-bottom: 20px;
+}
+
+.bullet-points {
+    width: 40px;
+    height: 40px;
+}
+
+.white-border {
+    width: 40px;
+    height: 37px;
+    /* margin-top: -16px; */
+    border-bottom: 3px solid white;
+}
+
+.blue-bracket {
+    color: #38BDF8;
+    width: 100%;
+    font-size: 20px;
+    padding-left: 5px;
+    padding-top: 4px;
+}
+
+.small-square {
+    height: 8px;
+    width: 8px;
+    background-color: #38BDF8;
+    display: inline-block;
+    margin-bottom: 3px;
+    /* margin-left: -1px; */
+}
+
+.title-name {
+    width: 100%;
+}
+
+.title-name h3 {
+    border-bottom: 1px solid #4D5A70; /* Original border */
+    width: auto;
+    height: 38px;
+    /* margin-top: -10px; */
+    padding-left: 5px;
+    position: relative; /* Add position relative to make the pseudo-element position relative to this */
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    transform: skew(-5deg, 0deg);
+}
+
+.title-name h3::after {
+    content: ''; /* Empty content for pseudo-element */
+    position: absolute; /* Position absolutely */
+    bottom: 0; /* Adjust as needed */
+    right: 0;
+    width: 15px; /* Span the entire width */
+    height: 5px; /* Adjust the thickness of the line */
+    border-bottom: 3px solid #38BDF8; /* Color of the line */
+}
+
+.trader-dashboard-frame {
+    border: solid 1px #4D5A70;
+    padding: 0 10px 10px; /* 0 top, 10px right/left, 10px bottom */
+    margin-bottom: 10px;
+    transition: border-color 0.3s;
+}
+
+.trader-dashboard-frame:hover,
+.trader-dashboard-frame.clicked {
+    border: solid 2px #38BDF8;
+}
+
+.pamm-master-box {
+    height: 150px;
+    width: 320px;
+    margin-bottom: 8px;
+    padding-right: 10px;
+    cursor: default;
+}
+
+.dashboard-name-border  {
+    /* font-style: italic; */
+    margin-left: 15px;
+    /* padding-top: 8px; */
+    /* margin-bottom: 5px; */
+    width: auto;
+    height: 38px;
+    position: relative; /* Add position relative to make the pseudo-element position relative to this */
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-name-border::after {
+    content: '';
+    position: absolute;
+    /* bottom: 4px; */
+    left: calc(0% - 15px); /* Adjust the distance from the end of the line */
+    width: 6px; /* Adjust the width of the colored box */
+    height: 70%;
+    background-color: #38BDF8; /* Color of the box */
+}
+
+.dashboard-name h4 {
+    transform: skew(-5deg, 0deg);
+    font-size: 14px;
+}
+
+.trader-dashboard-content {
+    display: flex;
+    flex-direction: row;
+    /* flex-grow: 1; */
+    width: 100%;
+    height: 90%;
+    /* margin-top: 14px; */
+}
+
+.trader-dashboard-img-1 {
+    width: 35%;
+}
+
+.shadow-container {
+    width: 100px;
+    height: 118px;
+    /* Add drop shadow */
+    filter: drop-shadow(1px 1px 3px #083549); /* Adjust the values for your desired shadow */
+  }
+  
+.hexagon-border {
+    clip-path: polygon(70% 0%, 100% 15%, 100% 100%, 30% 100%, 0 85%, 0 0%);
+    width: 100%;
+    height: 100%;
+}
+
+.hexagon-border img {
+    width: 100%;
+    height: 100%;
+}
+
+.hexagon-border-icon {
+    clip-path: polygon(70% 0%, 100% 15%, 100% 100%, 30% 100%, 0 85%, 0 0%);
+    width: 100px;
+    height: 118px;
+    background-color: #16324C;
+}
+
+.hexagon-border-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+/* .overlay-square {
+    position: absolute;
+    width: 80px; 
+    height: 80px;
+    background-color: #090E21; 
+} */
+
+.top-right {
+    top: -60px;
+    right: -40px;
+    transform: rotate(30deg); /* Rotate the square to 45 degrees */
+}
+
+.bottom-left {
+    bottom: -65px;
+    left: -30px;
+    transform: rotate(-60deg); /* Rotate the square to -45 degrees */
+}
+
+.trader-dashboard-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content-up-down {
+    display: flex;
+    flex-direction: column;
+    /* flex-grow: 1; */
+    width: 65%;
+    /* height: 140px; */
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.add-onbox {
+    display: flex;
+    flex-direction: row;
+    /* flex-grow: 6; */
+    height: 65px;
+}
+
+.bar-chart-data {
+    /* flex-grow: 4; */
+    height: 45px;
+    gap: 8px;
+    /* width: 201px; */
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.bar-chart {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 6.5vw;
+    height: 4.5vh;
+    /* margin-right: 5px; */
+    /* width: 500px; */
+    /* height: 50px; */
+    /* flex-grow: 8; */
+    /* padding-left: 10px; */
+}
+
+.bar-chart-profitability {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    /* flex-grow: 2; */
+    color: #94A3B8;
+    font-weight: 500;
+}
+
+.trader-dashboard-content-right {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* padding-left: 10px; */
+    color: #94A3B8;
+    /* font-weight: 400; */
+}
+
+.trader-dashboard-content-right-name {
+    text-align: left;
+}
+
+.trader-dashboard-content-right-name p,
+.trader-dashboard-content-right-data p {
+    margin-bottom: 2px;
+}
+
+.trader-dashboard-content-right-data {
+    text-align: right;
+    font-weight: bold;
+}
+
+.information-content {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 15px;
+    /* border: solid 1px black; */
+}
+
+.information-content-left {
+    text-align: left;
+    flex-grow: 1;
+}
+
+.information-content-right {
+    text-align: right;
+    flex-grow: 1;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.information-part-1,
+.information-part-2,
+.information-part-3 {
+    /* margin-bottom: 15px; */
+    padding-top: 10px;
+}
+
+.information-part-1 p,
+.information-part-2 p, 
+.information-part-3 p {
+    padding-bottom: 4px;
+    color: #94A3B8;
+    font-weight: 500;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.information-data-part-1,
+.information-data-part-2,
+.information-data-part-3 {
+    /* margin-bottom: 15px; */
+    padding-top: 10px;
+}
+
+.information-data-part-1 p,
+.information-data-part-2 p,
+.information-data-part-3 p {
+    padding-bottom: 4px;
+    margin-bottom: 2px;
+}
+
+#box13 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+#box6 {
+    /* flex: 6; */
+    display: flex;
+    flex-direction: column;
+    /* border: solid 1px white; */
+    width: 64%;
+    /* height: 100%; */
+}
+
+#box7 {
+    /* flex-grow: 8; */
+    /* border: solid 1px #83EEFF; */
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
+    height: 85%;
+}
+
+#box9-1 {
+    /* padding: 10px; */
+    /* flex-grow: 3.7; */
+    /* border: solid 1px yellow; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 72%;
+}
+
+#box9-1-1 {
+    /* flex: 6; */
+    text-align: left;
+    height: 65%;
+}
+
+.clickable-label-chart {
+    display: flex;
+    justify-content: end;
+    margin-top: 38px;
+}
+
+.clickable-label-chart-part-1 {
+    display: flex;
+    flex-direction: row;
+    z-index: 2;
+}
+
+.clickable-label-chart-part-2 {
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+}
+
+/* All label name 2,3*/
+/* .clickable-label-chart-name {
+    text-align: center;
+    justify-content: center; */
+    /* padding-top: 6px; */
+/* } */
+
+/* All label name 1,4 */
+/* .clickable-label-chart-name-triangle {
+    text-align: center;
+    justify-content: center;
+    padding-top: 14px;
+} */
+
+
+/* All label name */
+.clickable-label-chart-name {
+    position: absolute;
+    text-align: center;
+    font-size: 16px;
+    cursor: default; /*This is set text when meet cursor act default*/
+    /* justify-content: center; */
+}
+
+.wrapper:hover .clickable-label-chart-name {
+    color: #38BDF8;
+}
+
+.clickable-label-chart-rectangle-with-triangle-1 {
+    position: relative;
+    width: 90px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    background-color: #1E293B; /* Background color of the rectangle */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 25% 100%, 0 80%); /* Create triangle shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-right: 3px;
+    z-index: 0;
+    transition: clip-path 0.3s, box-shadow 0.3s;
+}
+
+.wrapper {
+    position: relative;
+    z-index: 0;
+}
+
+.wrapper:hover {
+    filter: drop-shadow(2px 2px 0px #38BDF8); /* Apply drop shadow on hover */
+    z-index: 0;
+    /* display: flex;
+    flex-direction: row; */
+    /* position: absolute; */
+}
+
+
+.wrapper:hover .clickable-label-chart-rectangle-with-trapezoid-1::after {
+    /*opacity: 0; /* Hide the ::after pseudo-element */
+    background-color: #38BDF8;
+}
+
+.clickable-label-chart-rectangle-with-trapezoid-1::after {
+    right: -23px; /* Position the right trapezoid */
+    clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%); /* Create trapezoid shape */
+    transform: rotate(270deg); /* Rotate right trapezoid 90 degrees */
+    background-color: #090E21;
+    content: '';
+    position: absolute;
+    top: 18px;
+    width: 40px; /* Adjust the width of the trapezoid */
+    height: 30%; /* Height of the trapezoid matches the height of the rectangle */
+}
+
+/* Second Label */
+.clickable-label-chart-rectangle-with-trapezoid-2 {
+    position: relative;
+    width: 90px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    background-color: #1E293B; /* Background color of the rectangle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-right: 3px;
+    z-index: 0;
+}
+
+.clickable-label-chart-rectangle-with-trapezoid-2::before,
+.clickable-label-chart-rectangle-with-trapezoid-2::after {
+    content: '';
+    position: absolute;
+    top: 17px;
+    width: 39px; /* Adjust the width of the trapezoid */
+    height: 34%; /* Height of the trapezoid matches the height of the rectangle */
+    background-color: #1E293B; /* Background color of the trapezoid */
+}
+
+.clickable-label-chart-rectangle-with-trapezoid-2::before {
+    left: -15px; /* Position the left trapezoid */
+    clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%); /* Create trapezoid shape */
+    transform: rotate(90deg); /* Rotate left trapezoid 90 degrees */
+}
+
+.clickable-label-chart-rectangle-with-trapezoid-2::after {
+    right: -23px; /* Position the right trapezoid */
+    clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%); /* Create trapezoid shape */
+    transform: rotate(270deg); /* Rotate right trapezoid 90 degrees */
+    background-color: #090E21;
+    content: '';
+    position: absolute;
+    top: 18px;
+    width: 40px;
+    height: 30%;
+    z-index: -1;
+}
+
+.wrapper:hover .clickable-label-chart-rectangle-with-trapezoid-2::after {
+    /* opacity: 0; */
+    background-color: #38BDF8;
+    top: 17px;
+    width: 38px;
+    /* z-index: 2; */
+}
+
+/* Third Label */
+.clickable-label-chart-rectangle-with-trapezoid-3 {
+    position: relative;
+    width: 80px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    background-color: #1E293B; /* Background color of the rectangle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    margin-right: 3px;
+    /* z-index: 1; */
+}
+
+.clickable-label-chart-rectangle-with-trapezoid-3::before,
+.clickable-label-chart-rectangle-with-trapezoid-3::after {
+    content: '';
+    position: absolute;
+    top: 17px;
+    width: 39px; /* Adjust the width of the trapezoid */
+    height: 34%; /* Height of the trapezoid matches the height of the rectangle */
+    background-color: #1E293B; /* Background color of the trapezoid */
+}
+
+.clickable-label-chart-rectangle-with-trapezoid-3::before {
+    left: -15px; /* Position the left trapezoid */
+    clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%); /* Create trapezoid shape */
+    transform: rotate(90deg); /* Rotate left trapezoid 90 degrees */
+}
+
+.clickable-label-chart-rectangle-with-trapezoid-3::after {
+    right: -15px; /* Position the right trapezoid */
+    clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%); /* Create trapezoid shape */
+    transform: rotate(90deg); /* Rotate right trapezoid 90 degrees */
+    background-color: #1E293B;
+}
+
+
+/* Forth label */
+.clickable-label-chart-rectangle-with-triangle-4 {
+    position: relative;
+    width: 110px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    background-color: #1E293B; /* Background color of the rectangle */
+    clip-path: polygon(78% 0, 80% 0, 100% 25%, 100% 100%, 0 100%, 0 0); /* Create triangle shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    /* margin-right: 3px; */
+    z-index: 0;
+    transition: clip-path 0.3s, box-shadow 0.3s;
+}
+
+.clickable-label-chart-rectangle-with-trapezoid-4 {
+    position: absolute;
+    top: 1px;
+    left: -56px;
+    /* right: -55px; */
+    width: 70px;
+    height: 0;
+    background-color: #090E21;
+    border-bottom: 50px solid transparent;
+    border-left: 25px solid #1E293B;
+    border-right: 25px solid #1E293B;
+    transform: rotate(90deg);
+    z-index: 3;
+}
+
+.clickable-shape:hover {
+    opacity: 0.5; /* Adjust the opacity as needed */
+}
+
+/* Additional style for when the shape is clicked */
+.wrapper .clicked-label {
+    background-color: #38BDF8; /* Change background color when clicked */
+    color: white; /* Change text color to white */
+    z-index: 1;
+}
+
+/* Add specific styles for individual shapes when clicked
+.clickable-label-chart-rectangle-with-trapezoid-2.clicked .clickable-label-chart-rectangle-with-trapezoid-2::before,
+.clickable-label-chart-rectangle-with-trapezoid-3.clicked .clickable-label-chart-rectangle-with-trapezoid-3::before,
+.clickable-label-chart-rectangle-with-trapezoid-2.clicked .clickable-label-chart-rectangle-with-trapezoid-2::after {
+    background-color: #38BDF8;
+} */
+
+
+
+
+/* .clickable-label-chart-rectangle-with-trapezoid-2::before
+
+.clickable-label-chart-rectangle-with-trapezoid-2 */
+
+
+
+
+
+
+
+
+.line-chart {
+    height: 35vh;
+    width: 44vw;
+    /* height: 65%; */
+    /* padding-top: 20px;
+    width: 845px;
+    height: 355px; */
+    /* border: solid 1px red; */
+}
+
+/* .content-middle-top {
+    flex: 6;
+    text-align: left; */
+    /* border: solid 1px red; */
+/* } */
+
+/* .content-middle-top h3 {
+    padding-left: 40px;
+    border-bottom: 1px solid #374151;
+    margin-bottom: 10px;
+} */
+
+#box9-2 {
+    /* flex: 3.1; */
+    /* border: solid 1px red; */
+    height: 35%;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 5px;
+    /* margin-top: 45px; */
+}
+
+#box9-2-1 {
+    flex: 1;
+    /* border: solid 1px blueviolet; */
+    text-align: left;
+}
+
+.radar-chart {
+    width: 20.5vw;
+    height: 18vh;
+    /* width: 380px;
+    height: 135px;
+    padding-left: 5px; */
+}
+
+/* .radar-chart {
+    width: 400px;
+    margin-top: -95px;
+    margin-left: 8px;
+} */
+
+/* .content-middle-top-1 h3 {
+    padding-left: 40px;
+    border-bottom: 1px solid #374151;
+    margin-bottom: 10px;
+} */
+
+#box9-2-2 {
+    flex: 1;
+    /* border: solid 1px blueviolet; */
+    text-align: left;
+    margin-left: 10px;
+}
+
+.pie-chart {
+    width: 20.5vw;
+    height: 18vh;
+    /* width: 380px;
+    height: 135px;
+    padding-left: 5px; */
+}
+
+/* .content-middle-top-2 h3 {
+    padding-left: 40px;
+    border-bottom: 1px solid #374151;
+    margin-bottom: 10px;
+} */
+
+#box10 {
+    /* padding: 10px; */
+    margin-left: 20px;
+    /* flex-grow: 3; */
+    /* border: solid 1px #83EEFF; */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 28%;
+    height: 100%;
+}
+
+.content-forex-market {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* .content-forex-market h3 {
+    padding-left: 40px;
+    border-bottom: 1px solid #374151;
+    margin-bottom: 10px;
+} */
+
+.content-forex-market-all {
+    display: flex;
+    flex-direction: row;
+    /* flex-grow: 1; */
+}
+
+.content-forex-market-left {
+    /* flex-grow: 1; */
+    padding-top: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.market-info-1 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 25%;
+    position: relative;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding-right: 5px;
+}
+
+.market-info-2 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 25%;
+    position: relative;
+    margin-top: 15px;
+    margin-left: 5px;
+    padding-right: 5px;
+}
+
+.market-info-3 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 25%;
+    position: relative;
+    margin-top: 15px;
+    margin-left: 5px;
+    padding-right: 5px;
+}
+
+.img-section {
+    /* display: flex;
+    flex-direction: row; */
+    width: 20%;
+    height: 50px;
+    /* position: relative; */
+    /* position: absolute; */
+}
+
+/* .forex-market-img img {
+    width: 100%;
+    height: 100%;
+} */
+
+/* .forex-market-img img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border-radius: 50%;
+} */
+
+.forex-market-img-1 {
+    /* top:20px;
+    left:20px; */
+    z-index:1;
+    width: 40px;
+    height: 40px;
+    border: 3px solid black;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: 16px;
+    /* top: 160px;
+    border: 3px solid black;
+    overflow: hidden; */
+}
+
+.forex-market-img-1 img {
+    /* width: 100%; */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.forex-market-img-2 {
+    /* top:40px;
+    left:40px; */
+    /* z-index:0; */
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    margin-left: 20px;
+}
+
+.forex-market-img-2 img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.forex-market-name {
+    margin-left: 30px;
+    /* margin-bottom: 10px; */
+    width: 40%;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* .forex-market-name p {
+    font-size: 14px;
+} */
+
+.market-label {
+    /* border: solid 1px white; */
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.market-label-rectangle-with-trapezoid {
+    position: relative;
+    width: 60px; /* Adjust width as needed */
+    height: 20px; /* Adjust height as needed */
+    background-color: #00B0BC; /* Background color of the rectangle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.market-label-rectangle-with-trapezoid::before,
+.market-label-rectangle-with-trapezoid::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    width: 15px; /* Adjust the width of the trapezoid */
+    height: 30%; /* Height of the trapezoid matches the height of the rectangle */
+    background-color: #00B0BC; /* Background color of the trapezoid */
+}
+
+.market-label-rectangle-with-trapezoid::before {
+    left: -9px; /* Position the left trapezoid */
+    clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%); /* Create trapezoid shape */
+    transform: rotate(90deg); /* Rotate left trapezoid 90 degrees */
+}
+
+.market-label-rectangle-with-trapezoid::after {
+    right: -9px; /* Position the right trapezoid */
+    clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%); /* Create trapezoid shape */
+    transform: rotate(90deg); /* Rotate right trapezoid 90 degrees */
+}
+
+.market-info-data-1, 
+.market-info-data-2, 
+.market-info-data-3 {
+    width: 40%;
+    text-align: right;
+}
+
+/* .market-info-data {
+    text-align: right;
+    margin-bottom: 29px;
+    display: flex;
+    flex-direction: column;
+} */
+
+.value {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#box12 {
+    flex: 1;
+    /* border: solid 1px white; */
+}
+
+.bar-chart-3D {
+    /* height: 400px; */
+    height: 34vh;
+    /* border: solid 2px red; */
+}
+
+#box8 {
+    height: 20%;
+    margin-left: 15px;
+    /* margin-top: -17px; */
+    /* flex-grow: 2.5; */
+    /* border: solid 1px brown; */
+}
+
+.content-bottom {
+    text-align: left;
+}
+
+.information-content .w-full {
+    width: 100%;
+    border-collapse: collapse; /*This is to remove the gap between each gap between table*/
+    border: none;
+}
+
+.information-content .table-header {
+    color: #38BDF8;
+    border: none;
+    font-size: 15px;
+}
+
+.information-content .table-content-bckg {
+    background-color: #0E1F36;
+    border: none;
+}
+
+.table-header .py-3 {
+    /* Apply padding of 0.75rem (12px) on the top and bottom */
+    /* padding-top: 20px; */
+    padding-bottom: 4px;
+}
+
+.table-content-bckg .py-4 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 13px;
+}
+
+.table-content .py-4 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 13px;
+}
+
+.table-content-date-time {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.table-content-date {
+    display: flex;
+}
+
+.table-content-time {
+    margin-left: 10px;
+}
+
+
+
+
+
+td.positive { color: #06F7A1; font-weight: bold; }
+td.negative { color: #FF483D; font-weight: bold; }
+
+.negative-growth {
+    color: #FF483D;
+}
+
+.positive-growth {
+    color: #06F7A1;
+}
+
+
+/* Major Forex Market css */
+.currency-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.currency-info .currency {
+    padding-left: 5px;
+    padding-top: 1px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.forex-market-green {
+    color: #06F7A1;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.forex-market-green-percentage {
+    color: #06F7A1;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.font-red-color {
+    color: #FF483D;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.font-red-color-percentage {
+    color: #FF483D;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.font-green-color {
+    color: #06F7A1;
+    /* font-size: 12px; */
+}
+
+.percentage {
+    padding-top: 12px;
+}
+
+.wrapper.active {
+    background-color: #38BDF8;
+}
