@@ -1,23 +1,29 @@
 <script setup>
-import { ref } from 'vue';
-
-
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios'; // Import Axios
 
 function createSmallBarChart(canvasId, data, gradientFunction) {
     const canvas = document.getElementById(canvasId);
+    if (!canvas) {
+        console.error('Canvas element not found:', canvasId);
+        return;
+    }
+
     const ctx = canvas.getContext('2d');
+    if (!ctx) {
+        console.error('Canvas context not available:', canvasId);
+        return;
+    }
 
     const chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: Array(12).fill('bar'), // Create an array with 12 'bar' labels
+            labels: Array(12).fill('bar'),
             datasets: [{
                 label: '',
                 data: data,
                 backgroundColor: function(context){
                     const chartArea = context.chart.chartArea;
-
                     if (!chartArea) {
                         return null;
                     }
@@ -51,26 +57,36 @@ function createSmallBarChart(canvasId, data, gradientFunction) {
 
 function getGradient(barCtx, chartArea) {
     const gradientBg = barCtx.createLinearGradient(chartArea.left, 0, chartArea.right, 0);
-
     gradientBg.addColorStop(0, '#38BDF8'); // First color
     gradientBg.addColorStop(0.5, '#31FBFB'); // Second color with reduced transparency
     gradientBg.addColorStop(1, 'rgba(49, 251, 251, 0)'); // Transparent color stop
-
     return gradientBg;
 }
 
-onMounted(() => {
-    // Example usage:
-    createSmallBarChart('barChart1', Array(12).fill(20), getGradient);
-    createSmallBarChart('barChart2', Array(12).fill(20), getGradient);
-    createSmallBarChart('barChart3', Array(12).fill(20), getGradient);
-    createSmallBarChart('barChart4', Array(12).fill(20), getGradient);
-    createSmallBarChart('barChart5', Array(12).fill(20), getGradient);
-    createSmallBarChart('barChart6', Array(12).fill(20), getGradient);
+onMounted(async () => {
+    await fetchData();
+    // Iterate over the fetched data to create bar charts for each frame
+    fetchedData.value.forEach((user, index) => {
+        const canvasId = 'barChart' + (index + 1); // Generate unique canvas ID
+        createSmallBarChart(canvasId, Array(12).fill(20), getGradient);
+    });
 });
 
-// import { onMounted } from 'vue';
+// onMounted(() => {
+//     createSmallBarChart('barChart1', Array(12).fill(20), getGradient);
+//     createSmallBarChart('barChart2', Array(12).fill(20), getGradient);
+//     createSmallBarChart('barChart3', Array(12).fill(20), getGradient);
+//     createSmallBarChart('barChart4', Array(12).fill(20), getGradient);
+//     createSmallBarChart('barChart5', Array(12).fill(20), getGradient);
+//     createSmallBarChart('barChart6', Array(12).fill(20), getGradient);
+// });
 
+// onMounted(() => {
+//     fetchData();
+// });
+
+
+// Function to apply color to total growth
 function applyColorToTotalGrowth() {
     const TDs = document.querySelectorAll('.trader-dashboard-content-right-data > p:nth-child(3)'); 
     // Select the 3rd paragraph in each .trader-dashboard-content-right-data
@@ -90,6 +106,7 @@ onMounted(() => {
     applyColorToTotalGrowth();
 });
 
+// Function to initialize click event
 function initializeClickEvent() {
     // Select all elements with IDs starting with "clickable"
     var elements = document.querySelectorAll("[id^='clickable']");
@@ -111,6 +128,38 @@ function initializeClickEvent() {
 // Call the initializeClickEvent function when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", initializeClickEvent);
 
+
+
+
+// const response = await axios.get('http://192.168.0.223:5000/api/trade_acc/457269');
+// const response = await axios.get('https://luckyant-trading-user.test/api/getMasters');
+
+
+const masterData = ref(null);
+
+async function fetchData() {
+    try {
+        const response = await axios.get('https://testmember.luckyantfxasia.com/api/getMaster');
+        masterData.value = response.data.metaUser;
+        console.log('Master Data:', masterData.value);
+
+        createSmallBarChart('barChart1', Array(12).fill(20), getGradient);
+    } catch (error) {
+        console.error('Error fetching live data:', error);
+    }
+}
+
+// Call fetchData function to fetch data when the component is mounted
+onMounted(() => {
+  fetchData(); // Fetch data when the component is mounted
+  setInterval(fetchData, 1000); // Fetch data every 1 second
+});
+
+
+
+
+
+
 </script>
 
 <template>
@@ -128,11 +177,11 @@ document.addEventListener("DOMContentLoaded", initializeClickEvent);
                 <h3>Masters</h3>
             </div>
         </div>
-        <div id="clickable1" class="trader-dashboard-frame">
+        <div id="clickable1" v-for="(user, index) in masterData" :key="index" class="trader-dashboard-frame">
             <div class="pamm-master-box">
                 <div class="dashboard-name-border">
                     <div class="dashboard-name">
-                        <h4>Godfather Trader</h4>
+                        <h4>{{ user.meta_user.name }}</h4> <!-- Display username or show error message -->
                     </div>
                 </div>
             <div class="trader-dashboard-content">
@@ -154,8 +203,8 @@ document.addEventListener("DOMContentLoaded", initializeClickEvent);
                             </div>
                         </div>
                         <div class="trader-dashboard-content-right-data">
-                            <p>$ 1,000,000.00</p>
-                            <p>188</p>
+                            <p>$ {{ user.meta_user.balance }} </p>
+                            <p>{{ user.subscriber }}</p>
                             <p class="total-growth">+2,383.39%</p>
                         </div>
                     </div>
@@ -172,227 +221,5 @@ document.addEventListener("DOMContentLoaded", initializeClickEvent);
             </div>
             </div>
         </div>
-        <div id="clickable2" class="trader-dashboard-frame">
-            <div class="pamm-master-box">
-                <div class="dashboard-name-border">
-                    <div class="dashboard-name">
-                        <h4>WealthHarbor Capital Management</h4>
-                    </div>
-                </div>
-            <div class="trader-dashboard-content">
-                <div class="trader-dashboard-img-1">
-                    <div class="shadow-container">
-                        <div class="hexagon-border">
-                            <img src="/src/assets/dashboard/dashboard-2-s.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="content-up-down">
-                    <div class="add-onbox">
-                        <div class="trader-dashboard-content-right">
-                            <div class="trader-dashboard-content-right-name">
-                                <p>Balance</p>
-                                <p>Investors</p>
-                                <p>Total Growth</p>
-                            </div>
-                        </div>
-                        <div class="trader-dashboard-content-right-data">
-                            <p>$ 1,000,000.00</p>
-                            <p>188</p>
-                            <p class="total-growth">+2,383.39%</p>
-                        </div>
-                    </div>
-                    <div class="bar-chart-data">
-                        <div class="bar-chart">
-                            <canvas id="barChart2" style="width: 120px; height: 50px;"></canvas>
-                        </div>
-                        <div class="bar-chart-profitability">
-                            <p>Profitability</p>
-                            <p class="font-green-color">96.83%</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div id="clickable3" class="trader-dashboard-frame">
-            <div class="pamm-master-box">
-                <div class="dashboard-name-border">
-                    <div class="dashboard-name">
-                        <h4>PrecisionInvest Pro</h4>
-                    </div>
-                </div>
-            <div class="trader-dashboard-content">
-                <div class="trader-dashboard-img-1">
-                    <div class="shadow-container">
-                        <div class="hexagon-border-icon">
-                            <img src="/src/assets/dashboard/dashboard-3-s.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="content-up-down">
-                    <div class="add-onbox">
-                        <div class="trader-dashboard-content-right">
-                            <div class="trader-dashboard-content-right-name">
-                                <p>Balance</p>
-                                <p>Investors</p>
-                                <p>Total Growth</p>
-                            </div>
-                        </div>
-                        <div class="trader-dashboard-content-right-data">
-                            <p>$ 1,000,000.00</p>
-                            <p>188</p>
-                            <p class="total-growth">-29.42%</p>
-                        </div>
-                    </div>
-                    <div class="bar-chart-data">
-                        <div class="bar-chart">
-                            <canvas id="barChart3" style="width: 120px; height: 50px;"></canvas>
-                        </div>
-                        <div class="bar-chart-profitability">
-                            <p>Profitability</p>
-                            <p class="font-green-color">96.83%</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div id="clickable4" class="trader-dashboard-frame">
-            <div class="pamm-master-box">
-                <div class="dashboard-name-border">
-                    <div class="dashboard-name">
-                        <h4>SecureGrowth Portfolios</h4>
-                    </div>
-                </div>
-            <div class="trader-dashboard-content">
-                <div class="trader-dashboard-img-1">
-                    <div class="shadow-container">
-                        <div class="hexagon-border">
-                            <img src="/src/assets/dashboard/dashboard-4-s.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="content-up-down">
-                    <div class="add-onbox">
-                        <div class="trader-dashboard-content-right">
-                            <div class="trader-dashboard-content-right-name">
-                                <p>Balance</p>
-                                <p>Investors</p>
-                                <p>Total Growth</p>
-                            </div>
-                        </div>
-                        <div class="trader-dashboard-content-right-data">
-                            <p>$ 1,000,000.00</p>
-                            <p>188</p>
-                            <p class="total-growth">+2,383.39%</p>
-                        </div>
-                    </div>
-                    <div class="bar-chart-data">
-                        <div class="bar-chart">
-                            <canvas id="barChart4" style="width: 120px; height: 50px;"></canvas>
-                        </div>
-                        <div class="bar-chart-profitability">
-                            <p>Profitability</p>
-                            <p class="font-green-color">96.83%</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div id="clickable5" class="trader-dashboard-frame">
-            <div class="pamm-master-box">
-                <div class="dashboard-name-border">
-                    <div class="dashboard-name">
-                        <h4>StrategicWealth Ventures</h4>
-                    </div>
-                </div>
-            <div class="trader-dashboard-content">
-                <div class="trader-dashboard-img-1">
-                    <div class="shadow-container">
-                        <div class="hexagon-border">
-                            <img src="/src/assets/dashboard/dashboard-5-s.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="content-up-down">
-                    <div class="add-onbox">
-                        <div class="trader-dashboard-content-right">
-                            <div class="trader-dashboard-content-right-name">
-                                <p>Balance</p>
-                                <p>Investors</p>
-                                <p>Total Growth</p>
-                            </div>
-                        </div>
-                        <div class="trader-dashboard-content-right-data">
-                            <p>$ 1,000,000.00</p>
-                            <p>188</p>
-                            <p class="total-growth">+2,383.39%</p>
-                        </div>
-                    </div>
-                    <div class="bar-chart-data">
-                        <div class="bar-chart">
-                            <canvas id="barChart5" style="width: 120px; height: 50px;"></canvas>
-                        </div>
-                        <div class="bar-chart-profitability">
-                            <p>Profitability</p>
-                            <p class="font-green-color">96.83%</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div id="clickable6" class="trader-dashboard-frame">
-            <div class="pamm-master-box">
-                <div class="dashboard-name-border">
-                    <div class="dashboard-name">
-                        <h4>AlphaDynamics Fund</h4>
-                    </div>
-                </div>
-            <div class="trader-dashboard-content">
-                <div class="trader-dashboard-img-1">
-                    <div class="shadow-container">
-                        <div class="hexagon-border">
-                            <img src="/src/assets/dashboard/dashboard-6-s.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="content-up-down">
-                    <div class="add-onbox">
-                        <div class="trader-dashboard-content-right">
-                            <div class="trader-dashboard-content-right-name">
-                                <p>Balance</p>
-                                <p>Investors</p>
-                                <p>Total Growth</p>
-                            </div>
-                        </div>
-                        <div class="trader-dashboard-content-right-data">
-                            <p>$ 1,000,000.00</p>
-                            <p>188</p>
-                            <p class="total-growth">+2,383.39%</p>
-                        </div>
-                    </div>
-                    <div class="bar-chart-data">
-                        <div class="bar-chart">
-                            <canvas id="barChart6" style="width: 120px; height: 50px;"></canvas>
-                        </div>
-                        <div class="bar-chart-profitability">
-                            <p>Profitability</p>
-                            <p class="font-green-color">96.83%</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- <script>
-                    ApplyColorToTotalGrowth();
-                </script> -->
-            </div>
-        </div>
-        </div>
     </div>
 </template>
-
-<!-- <script>ApplyColorToTotalGrowth();</script>
-<script>ApplyColorToForexMarket();</script>
-<script>ApplyColorToProfitAndGain();</script> -->
