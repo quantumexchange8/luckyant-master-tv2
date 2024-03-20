@@ -28,7 +28,7 @@ onMounted(() => {
         analyzingHistory.value.push(phrase); // Add new phrase to the end
         // Scroll to the bottom of the container after adding a new phrase
         contentContainer.value.scrollTop = contentContainer.value.scrollHeight;
-    }, 2000);
+    }, 500);
 });
 </script>
 
