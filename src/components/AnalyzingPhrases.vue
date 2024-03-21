@@ -4,6 +4,13 @@ import { onMounted, ref } from 'vue';
 const analyzingPhrases = [
     "Impact analyzing...",
     "US News analyzing...",
+    "Europe News analyzing...",
+    "GBP Market News analyzing...",
+    "Japan News analyzing...",
+    "CHF (Swiss Franc) News analyzing...",
+    "Canada News analyzing...",
+    "New Zealand News analyzing...",
+    "Bloomberg News analyzing...",
     "Global News analyzing...",
     "Reporting checking..",
     "Data price loaded...",
